@@ -1,0 +1,11 @@
+# history search
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+#completion settings
+set completion-ignore-case on
+
+#keybinds
+"\es":"\C-asudo \C-e"
+"\ep":"sudo pacman -"
+"\ey":"yay -"
