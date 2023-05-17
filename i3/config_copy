@@ -29,10 +29,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -182,9 +180,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out)
-#bar {
- #       status_command i3status -c /home/patrike/.config/i3status/i3status.conf
-#}
+bar {
+        status_command i3status -c /home/patrike/.config/i3status/i3status.conf
+}
 
 # keyboard layout
 exec_always setxkbmap br
@@ -193,13 +191,12 @@ exec_always setxkbmap br
 bindsym $mod+l exec i3lock && sleep 5 && xset dpms force off
 
 # transparence and window stuff
-exec_always picom
+#exec_always picom
 
 # screen brightness key binding 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%- 
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set +1%
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%-
+
 
 # screen shot
 bindsym Print exec flameshot screen
@@ -208,13 +205,7 @@ bindsym ctrl+Print exec flameshot screen -c
 
 # wallpaper
 #exec_always feh --bg-scale Pictures/adventuretime/2022-10-29_00-42.png
-#exec_always feh --bg-scale Pictures/adventuretime/flame.png
-#exec_always feh --bg-scale Pictures/frutiger_aero/black_blue.jpg
-#exec_always feh --bg-scale Pictures/vim.png
-#exec_always feh --bg-scale Pictures/lgbv.png
-#exec_always feh --bg-scale Pictures/vimzão.png
-exec_always feh --bg-scale Documents/schedule.png
-
+exec_always feh --bg-scale Pictures/adventuretime/flame.png
 
 # floating pop up automatically (testing)
 for_window [window_role="pop-up"] floating enable
@@ -227,37 +218,3 @@ bindsym XF86Calculator exec speedcrunch
 
 # japanese stuff 日本語
 exec_always fcitx -d
-
-##Gaps
-default_border pixel 0
-
-gaps inner 5
-gaps outer 0
-smart_gaps on
-
-##Color scheme
-
-# class                 border  bground text    indicator child_border
-client.focused          #4C7899 #056CF2 #FFFFFF #05F2F2   #285577
-client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
-client.unfocused        #333333 #011C40 #888888 #292D2E   #222222
-client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
-
-client.background       #FFFFFF
-
-bar {
-status_command i3status -c /home/patrike/.config/i3status/i3status.conf
-  colors {
-    background #011126
-    statusline #FFFFFF
-    separator  #666666
-
-    focused_workspace  #4C7899 #056CF2 #FFFFFF
-    active_workspace   #333333 #222222 #FFFFFF
-    inactive_workspace #333333 #011C40 #888888
-    urgent_workspace   #2F343A #900000 #FFFFFF
-    binding_mode       #2F343A #900000 #FFFFFF
-  }
-}
-
